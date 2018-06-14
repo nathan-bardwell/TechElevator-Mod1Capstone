@@ -34,16 +34,24 @@ public class VendingMachine {
 		this.totalMoneyInMachine = totalMoneyInMachine.add(money);
 	}
 	
+	public void selectProduct(String userCode) {
+		this.productLocation = userCode;
+		Set<String> keys = machineInventory.snackMap.keySet();
+		for (String productCode : keys) {
+			if (productLocation.equals(productCode)) {
+				dispenseProduct();
+			} else {
+				System.out.println("The code " + productLocation + " does not exist. Try again.");
+			}
+		}
+	}
+	
 	public void giveChange(BigDecimal changeToGive) {
 		
 	}
 	
-	public void selectProduct(String location) {
-		
-	}
-	
 	public void dispenseProduct() {
-		
+		System.out.println("Things are working...kinda...");
 	}
 	
 	public void finishTransaction() {
