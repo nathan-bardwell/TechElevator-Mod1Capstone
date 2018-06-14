@@ -5,6 +5,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+//DO NOT CHANGE THIS CODE//DO NOT CHANGE THIS CODE//DO NOT CHANGE THIS CODE//
+
 public class Menu {
 
 	private PrintWriter out;
