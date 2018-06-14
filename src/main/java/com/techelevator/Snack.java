@@ -3,13 +3,19 @@ package com.techelevator;
 import java.math.BigDecimal;
 
 public class Snack {
-
+//Attributes
 	private String snackType;
 	private String snackName;
 	private BigDecimal snackPrice;
-	private int snackQuantity;
 	
+//Constructor
+	public Snack(String name, BigDecimal price, String type) {
+		this.snackName = name;
+		this.snackPrice = price;
+		this.snackType = type;
+	}
 	
+//Methods	
 	public String getSnackType() {
 		return snackType;
 	}
@@ -21,12 +27,5 @@ public class Snack {
 	public BigDecimal getSnackPrice() {
 		return snackPrice;
 	}
-	
-	
-	public int getSnackQuantity() {
-		return snackQuantity;
-	}
-	
-	
 	
 }
