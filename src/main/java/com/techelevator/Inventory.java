@@ -12,12 +12,13 @@ public class Inventory {
 
 	HashMap<String, Snack> snackMap = new HashMap<String, Snack>();
 
-	public Inventory() throws FileNotFoundException {
+	public Inventory()  {
 
 	}
 
 	File inventoryFile = new File("vendingmachine.csv");
-	{
+	public HashMap<String, Snack> fillInventory() throws  FileNotFoundException {
+		
 		try (Scanner fileScanner = new Scanner(inventoryFile)) {
 			while (fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();
@@ -27,5 +28,6 @@ public class Inventory {
 
 			}
 		}
+		return snackMap;
 	}
 }

@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.io.FileNotFoundException;
+
 import com.techelevator.view.Menu;
 
 public class VendingMachineCLI {
@@ -13,18 +15,20 @@ public class VendingMachineCLI {
 													   MAIN_MENU_OPTION_EXIT };
 	
 	private Menu menu;
+	private Inventory newInventory = new Inventory();
 	
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
 	}
 	
-	public void run() {
+	public void run() throws FileNotFoundException {
 		while(true) {
 			String choice = (String)menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			// invoke the getChoiceFromOption method with that array we set up
 			
 																			       //     with array of options
 			if(choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
+				
 				// display vending machine items, our code will be here
 			} else if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
@@ -37,7 +41,7 @@ public class VendingMachineCLI {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		Menu menu = new Menu(System.in, System.out); // instantiate the menu object(giving it input source , output source)
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
