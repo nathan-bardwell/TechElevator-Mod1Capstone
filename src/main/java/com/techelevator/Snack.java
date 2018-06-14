@@ -7,12 +7,14 @@ public class Snack {
 	private String snackType;
 	private String snackName;
 	private BigDecimal snackPrice;
+	private int snackQuantity;
 	
 //Constructor
-	public Snack(String name, BigDecimal price, String type) {
+	public Snack(String name, BigDecimal price, String type, int quantity) {
 		this.snackName = name;
 		this.snackPrice = price;
 		this.snackType = type;
+		this.snackQuantity = quantity;
 	}
 	
 //Methods	

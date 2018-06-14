@@ -10,8 +10,7 @@ import java.util.Scanner;
 
 public class Inventory {
 
-	HashMap<String, ArrayList<String>> snackMap = new HashMap<String, ArrayList<String>>();
-	ArrayList<String> snackList = new ArrayList<String>();
+	HashMap<String, Snack> snackMap = new HashMap<String, Snack>();
 
 	public Inventory() throws FileNotFoundException {
 
@@ -20,12 +19,13 @@ public class Inventory {
 	File inventoryFile = new File("vendingmachine.csv");
 	{
 		try (Scanner fileScanner = new Scanner(inventoryFile)) {
-			while(fileScanner.hasNextLine()) {
-			String line = fileScanner.nextLine();
-			String[] splitLine = line.split("|");
-			snackList.add(splitLine[1]);
-			
-		}
+			while (fileScanner.hasNextLine()) {
+				String line = fileScanner.nextLine();
+				String[] splitLine = line.split("|");
+				Snack newSnack = new Snack(splitLine[1], new BigDecimal(splitLine[2]), splitLine[3], 5);
+				snackMap.put(splitLine[0], newSnack);
+
+			}
 		}
 	}
 }
