@@ -1,6 +1,8 @@
 package com.techelevator;
 
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
+import java.util.Scanner;
 
 import com.techelevator.view.Menu;
 
@@ -29,9 +31,45 @@ public class VendingMachineCLI {
 			if(choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				System.out.println();
 				newVendingMachine.printInventory();
+				
 				// display vending machine items, our code will be here
 			} else if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				// do purchase
+				while(true){
+				System.out.println("(1) Feed Money");
+				System.out.println("(2) Select Product");
+				System.out.println("(3) Finish Transaction");
+				System.out.println("Current Money Provided:" + newVendingMachine.getTotalMoney());
+				System.out.println("   ");
+				System.out.print("Please choose an option >>> ");
+				Scanner userInput = new Scanner(System.in);
+				String userChoice = userInput.nextLine();
+				if(userChoice.equals("1")){
+					String userMoney = userInput.nextLine();
+					newVendingMachine.feedMoney(new BigDecimal(userMoney));;
+				}
+				else if (userChoice.equals("2")){
+					return;
+				}
+				else if (userChoice.equals("3")){
+					return;
+				}
+				
+				
+				}
+			
+				
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
 				return;
 			}

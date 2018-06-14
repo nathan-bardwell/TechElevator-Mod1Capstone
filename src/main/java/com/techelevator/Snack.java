@@ -29,5 +29,7 @@ public class Snack {
 	public BigDecimal getSnackPrice() {
 		return snackPrice;
 	}
-	
+	public int getSnackQuantity(){
+		return snackQuantity;
+	}
 }

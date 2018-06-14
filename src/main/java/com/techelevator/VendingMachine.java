@@ -26,9 +26,9 @@ public class VendingMachine {
 		String newString = null;
 		Set<String> keys = machineInventory.snackMap.keySet();
 		for (String location : keys) {
-		    newString = location + "  ---->  " + machineInventory.snackMap.get(location).getSnackName() + "  $" + machineInventory.snackMap.get(location).getSnackPrice();
+		    newString = location + "  ---->  " + machineInventory.snackMap.get(location).getSnackName() + "  $" + machineInventory.snackMap.get(location).getSnackPrice() + " Quantity Remaining: " + machineInventory.snackMap.get(location).getSnackQuantity();
 		    System.out.println(newString);
-		}
+		    	}
 	}
 	public void feedMoney(BigDecimal money) {
 		this.totalMoneyInMachine = totalMoneyInMachine.add(money);
@@ -53,5 +53,10 @@ public class VendingMachine {
 	public void createLog() {
 		
 	}
+	public BigDecimal getTotalMoney(){
+		return totalMoneyInMachine;
+		
+	}
+	}
 	
-}
+
