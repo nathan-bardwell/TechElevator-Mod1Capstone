@@ -15,27 +15,24 @@ public class VendingMachineCLI {
 													   MAIN_MENU_OPTION_EXIT };
 	
 	private Menu menu;
-	private Inventory newInventory = new Inventory();
+	private VendingMachine newVendingMachine;
 	
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
 	}
 	
 	public void run() throws FileNotFoundException {
+		newVendingMachine = new VendingMachine();
 		while(true) {
 			String choice = (String)menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
-			// invoke the getChoiceFromOption method with that array we set up
-			
-																			       //     with array of options
+			// invoke the getChoiceFromOption method with that array we set up			
 			if(choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-				
+				System.out.println();
+				newVendingMachine.printInventory();
 				// display vending machine items, our code will be here
 			} else if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
-				return;
-			}
-			else if(choice.equals(MAIN_MENU_OPTION_EXIT)){
 				return;
 			}
 		}
