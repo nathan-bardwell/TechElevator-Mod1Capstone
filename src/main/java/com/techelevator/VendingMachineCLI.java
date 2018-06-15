@@ -51,9 +51,9 @@ public class VendingMachineCLI {
 						;
 					} else if (userChoice.equals("2")) {
 						System.out.print("Please enter the code for your desired snack >>> ");
-						String userSnack = userInput.nextLine();
-						newVendingMachine.selectProduct(userSnack);
-						
+						String snackChoice = userInput.nextLine();
+						newVendingMachine.selectProduct(snackChoice);
+						break;
 					} else if (userChoice.equals("3")) {
 						return;
 					}

@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class VendingMachine {
 //Attributes
-	private Snack product;
+	private boolean wasProductDispensed = false;
 	private String productLocation;
 	private BigDecimal totalMoneyInMachine;
 	private Inventory machineInventory;
@@ -40,10 +40,16 @@ public class VendingMachine {
 		for (String productCode : keys) {
 			if (productLocation.equals(productCode)) {
 				dispenseProduct();
-			} else {
-				System.out.println("The code " + productLocation + " does not exist. Try again.");
-			}
+				wasProductDispensed = true;
+			} 
 		}
+		if (wasProductDispensed) {
+			System.out.println("Enjoy your snack.");
+		} else {
+			System.out.println("The code " + productLocation + " does not exist. Please enter a valid code.");
+
+		}
+		
 	}
 	
 	public void giveChange(BigDecimal changeToGive) {
@@ -51,7 +57,8 @@ public class VendingMachine {
 	}
 	
 	public void dispenseProduct() {
-		System.out.println("Things are working...kinda...");
+		machineInventory.snackMap.get(productLocation).decreaseSnackQuantity();
+		
 	}
 	
 	public void finishTransaction() {

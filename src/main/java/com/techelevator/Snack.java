@@ -32,4 +32,7 @@ public class Snack {
 	public int getSnackQuantity(){
 		return snackQuantity;
 	}
+	public void decreaseSnackQuantity() {
+		this.snackQuantity -= 1;
+	}
 }
