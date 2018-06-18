@@ -52,8 +52,12 @@ public class VendingMachineCLI {
 					if (userChoice.equals("1")) {
 						System.out.print("\nPlease enter the whole dollar amount you'd like to insert >>> ");
 						String userMoney = userInput.nextLine();
-						myVendingMachine.feedMoney(new BigDecimal(userMoney));
-						myVendingMachine.writeToLog(dtf.format(now) + "    FEED MONEY:    $" + userMoney + "    $"
+						try {
+							myVendingMachine.feedMoney(new BigDecimal(userMoney));
+						} catch (Exception e) {
+							System.out.println("\nINVALID INPUT. ENTER A DOLLAR AMOUNT.\n");
+						}
+						myVendingMachine.writeToLog(dtf.format(now) + "    **FEED MONEY**    $" + userMoney + "    $"
 								+ myVendingMachine.getTotalMoney());
 					} else if (userChoice.equals("2")) {
 						System.out.print("\nPlease enter the code for your desired snack >>> ");
@@ -67,7 +71,7 @@ public class VendingMachineCLI {
 						System.out.println();
 
 					} else if (userChoice.equals("3")) {
-						myVendingMachine.writeToLog(dtf.format(now) + "    CHANGE GIVEN:    $"
+						myVendingMachine.writeToLog(dtf.format(now) + "    **CHANGE GIVEN**    $"
 								+ myVendingMachine.getTotalMoney() + "    $0.00");
 						myVendingMachine.finishTransaction();
 						break;
@@ -76,6 +80,7 @@ public class VendingMachineCLI {
 				}
 
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
+				myVendingMachine.writeToSalesReport();
 				myVendingMachine.closeWriter();
 				return;
 			}

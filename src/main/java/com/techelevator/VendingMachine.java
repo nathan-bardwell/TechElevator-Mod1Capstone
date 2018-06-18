@@ -13,16 +13,19 @@ public class VendingMachine {
 	// Attributes
 	private boolean productExists = false;
 	private String productLocation;
-	private String productInfo;
 	private BigDecimal totalMoneyInMachine;
 	private Inventory machineInventory;
 	private File auditFile;
 	private PrintWriter auditWriter;
+	private File salesFile;
+	private PrintWriter salesWriter;
 
 	// constructor
 	public VendingMachine() throws FileNotFoundException {
 		auditFile = new File("log.txt");
+		salesFile = new File("salesreport.csv");
 		auditWriter = new PrintWriter(auditFile);
+		salesWriter = new PrintWriter(salesFile);
 		totalMoneyInMachine = new BigDecimal("0.00");
 		this.machineInventory = new Inventory();
 		machineInventory.fillInventory();
@@ -101,20 +104,17 @@ public class VendingMachine {
 			quarters += totalMoneyDouble / 0.25;
 			totalMoneyDouble = totalMoneyDouble % 0.25;
 		} else {
-			System.out.println("No change left to give");
 		}
 		if (totalMoneyDouble > 0.00) {
 			dimes += totalMoneyDouble / 0.10;
 			totalMoneyDouble = totalMoneyDouble % 0.10;
 		} else {
-			System.out.println("No change left to give");
-			return;
+		
 		}
 		if (totalMoneyDouble > 0.00) {
 			nickels += totalMoneyDouble / 0.05;
 		} else {
-			System.out.println("No change left to give");
-			return;
+		
 		}
 
 		System.out.println("[" + quarters + " quarters]");
@@ -128,17 +128,33 @@ public class VendingMachine {
 	}
 
 	public void writeToLog(String transactionInfo) throws FileNotFoundException {
-
 		try {
 			auditWriter.println(transactionInfo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+	}
+	
+	public void writeToSalesReport() throws FileNotFoundException{
+		try {
+			Set<String> keys = machineInventory.snackMap.keySet();
+			BigDecimal revenue = new BigDecimal("0.00");
+			for (String productCode : keys) {
+				BigDecimal quantitySold = new BigDecimal(5 - machineInventory.snackMap.get(productCode).getSnackQuantity());
+				BigDecimal snackPrice = machineInventory.snackMap.get(productCode).getSnackPrice();
+				salesWriter.println(machineInventory.snackMap.get(productCode).getSnackName() + "|" + quantitySold);
+				revenue = revenue.add(snackPrice.multiply(quantitySold));
+			}
+			salesWriter.println();
+			salesWriter.println("**TOTAL SALES** $" + revenue);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void closeWriter() {
 		auditWriter.close();
+		salesWriter.close();
 	}
 
 	public BigDecimal getTotalMoney() {
