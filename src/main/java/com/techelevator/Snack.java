@@ -35,4 +35,22 @@ public class Snack {
 	public void decreaseSnackQuantity() {
 		this.snackQuantity -= 1;
 	}
+	
+	public void consumeSnack() {
+		String consumeString = "";
+		if (snackQuantity < 5) {
+			if (snackType.equals("Chip")) {
+				consumeString = "\nCrunch Crunch, Yum!";
+			} else if (snackType.equals("Candy")) {
+				consumeString = "\nMunch Munch, Yum!";
+			} else if (snackType.equals("Drink")) {
+				consumeString = "\nGlug Glug, Yum!";
+			} else if (snackType.equals("Gum")) {
+				consumeString = "\nChew Chew, Yum!";
+			}
+		}
+		if (!consumeString.equals("")) {
+			System.out.println(consumeString);
+		}
+	}
 }
