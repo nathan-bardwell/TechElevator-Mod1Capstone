@@ -1,6 +1,6 @@
 *.DS_Store
 ._*
-
+*.idea
 **/target/
 **/.metadata
 **/.classpath
